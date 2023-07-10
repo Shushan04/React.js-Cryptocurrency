@@ -1,6 +1,7 @@
+import { renderChangePercent } from '../../helpers/renderChangePercent';
 import './index.css';
 
-const Table = () => {
+const Table = (props) => { 
     return (
         <div className='Table-container'>
             <table className="Table">
@@ -17,7 +18,30 @@ const Table = () => {
 
                 <tbody className="Table-body">
                    {
-                    
+                       props.currencyList.map((item) => {
+                           console.log(item)
+                           return (
+                               <tr>
+                                   <td>{item.symbol}</td>
+                                   <td>
+                                       <img src={item.image.thumb} alt={item.name} />
+                                   </td>
+                                   <td>
+                                       {item.name}
+                                   </td>
+                                   <td>
+                                      <b>$</b> {item.market_data.current_price.usd}
+                                   </td>
+
+                                   <td>
+                                       {item.market_data.market_cap_rank}
+                                   </td>
+                                   <td>
+                                       {renderChangePercent(item.market_data.market_cap_change_percentage_24h)}
+                                   </td>
+                               </tr>
+                           )
+                       })
                    }
                 </tbody>
             </table>

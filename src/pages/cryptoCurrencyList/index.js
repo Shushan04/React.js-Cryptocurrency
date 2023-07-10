@@ -48,7 +48,7 @@ class CryptoCurrencyList extends React.Component {
 
         return (
             <div>
-                <Table />
+                <Table currencyList = {data} />
             </div>
         )
     }
