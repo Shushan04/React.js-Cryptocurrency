@@ -1,8 +1,11 @@
 import Header from './components/header';
+import CryptoCurrencyList from './pages/cryptoCurrencyList'; //page ---> 
+
 function App() {
     return (
         <div>
-           <Header />
+            <Header />
+            <CryptoCurrencyList />
         </div>
     )
 }
