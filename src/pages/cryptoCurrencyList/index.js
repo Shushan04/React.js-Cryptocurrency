@@ -1,8 +1,9 @@
 import React from 'react';
 import Table from '../../components/table';
+import Loading from '../../components/loading';
 
 class CryptoCurrencyList extends React.Component {
-    constructor() { //1
+    constructor() {  //1
         super();
         this.state = { //
             loading: false,
@@ -20,9 +21,9 @@ class CryptoCurrencyList extends React.Component {
 
         try {
             const response = await fetch(`https://api.coingecko.com/api/v3/coins/?per_page=10`);
-            const result = await response.json();
+            const result = await response.json(); //"[{x: 10}]" ---> [{x: 10}]
 
-            this.setState({
+            this.setState({ 
                 data: result
             })
 
@@ -37,18 +38,24 @@ class CryptoCurrencyList extends React.Component {
         }
     }
 
-    componentDidMount() {
-        this.handleGetCurrenciesList();
+    componentDidMount() { 
+        this.handleGetCurrenciesList(); //backend data
     }
 
-    render() { 
+    render() {  
         const { loading, error, data } = this.state;
         
-        console.log(this.state);
-
+        if (loading) {
+            return (
+                <div className='loading-container'>
+                    <Loading width="80px" height="80px" />
+                </div>
+            )
+        }
+      
         return (
             <div>
-                <Table currencyList = {data} />
+                <Table currencyList={data} />
             </div>
         )
     }
