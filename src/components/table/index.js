@@ -19,7 +19,6 @@ const Table = (props) => {
                 <tbody className="Table-body">
                    {
                        props.currencyList.map((item) => {
-                           console.log(item)
                            return (
                                <tr>
                                    <td>{item.symbol}</td>
